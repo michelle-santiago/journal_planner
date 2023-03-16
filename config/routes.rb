@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get '/categories' => 'categories#index'
-  get '/categories/new' => 'categories#new', as: 'categories_new'
+  # get '/categories' => 'categories#index'
+  # get '/categories/new' => 'categories#new', as: 'categories_new'
+  resources (:categories)
 end
