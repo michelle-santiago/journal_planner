@@ -10,15 +10,16 @@ default: &default
     # For details on connection pooling, see Rails configuration guide
     # http://guides.rubyonrails.org/configuring.html#database-pooling
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-    
+    username: mishel
+    password: <%= ENV['JOURNAL_PLANNER_DATABASE_PASSWORD'] %>
 development:
   <<: *default
   # database: db/development.sqlite3
   database: journal_planner_development 
-  username: journal_planner
-  password: <%= ENV['JOURNAL_PLANNER_DATABASE_PASSWORD'] %>
-  host: localhost
-  port: 5432
+  # username: journal_planner
+  # password: <%= ENV['JOURNAL_PLANNER_DATABASE_PASSWORD'] %>
+  # host: localhost
+  # port: 5432
 
 
 # Warning: The database defined as "test" will be erased and
