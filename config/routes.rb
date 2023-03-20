@@ -8,4 +8,11 @@ Rails.application.routes.draw do
   resources :categories do
     resources :tasks
   end
+
+  get '/sign_in' => 'auth#sign_in'
+  get '/sign_up' => 'auth#sign_up'
+  post '/sign_in' => 'auth#new_session'
+  post '/sign_up' => 'auth#new_account'
+  delete '/logout' => 'auth#logout'
+
 end
