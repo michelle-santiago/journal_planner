@@ -1,18 +1,18 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
+  - name: journal_planner
+    databaseName: journal_planner
+    user: journal_planner
 
 services:
   - type: web
-    name: mysite
+    name: journal_planner
     env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: journal_planner
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
