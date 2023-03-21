@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   # get '/categories' => 'categories#index'
   # get '/categories/new' => 'categories#new', as: 'categories_new'
+  root "home#index"
+
   resources :categories do
     resources :tasks
   end
