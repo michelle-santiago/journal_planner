@@ -1,5 +1,5 @@
 <div class="px-20 py-20 flex flex-col justify-center items-center">
-    <%= form_with model: user, local: true do |f| %>
+    <%= form_with model: user, url: sign_in_path, local: true do |f| %>
     <p>
         <% if user.errors.any? %>
             <ul>
@@ -20,7 +20,7 @@
     </p>
 
     <button class="bg-pink-200 rounded-md px-3 py-2 text-sm font-medium">
-        <%=f.submit%>
+        <%=f.submit 'Sign in'%>
     </button>
 
     <% end %>
