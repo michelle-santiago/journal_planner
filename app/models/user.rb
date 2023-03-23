@@ -7,8 +7,12 @@ class User < ApplicationRecord
     validates :email, uniqueness: {case_sensitive: false}, presence: true
     validates :password, presence: true
 
-    def self.sign_up(user_params)
-        
+    def self.sign_up(sign_up_params)
+        if (sign_up_params[:password] == sign_up_params[:password_confirmation]) 
+            password_hash = BCrypt::Password.create(sign_up_params[:password]) 
+            user = User.new(email: sign_up_params[:email], password: password_hash)
+            return user
+        end
     end
 
     def self.sign_in(user_params)

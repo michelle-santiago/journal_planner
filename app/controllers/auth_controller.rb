@@ -8,7 +8,7 @@ class AuthController < ApplicationController
     def sign_up
         @user = User.new
     end
-
+    #post /sign_in
     def new_session
         @user = User.new(email: user_params[:email], password: user_params[:password])
         if @user.email.empty?
@@ -26,36 +26,25 @@ class AuthController < ApplicationController
         end
         render :sign_in, status: :unprocessable_entity if @user.errors.count > 0
     end
-
+    #post /sign_up
     def new_account
-        puts "asdasdasdas"
-        if (sign_up_params[:password]) === ""
-            puts "yes opo empty"
-        else
-            puts "hindi po empty" 
-            puts (sign_up_params[:password])            #walaaa
-            puts (sign_up_params[:password]) == ""      #false
-            puts (sign_up_params[:password]).to_s === "" #true
-            puts (sign_up_params[:password]).class      #nil
-        end
-        puts "banana"
-        puts (sign_up_params[:password]).empty?
-        puts "watermelon"
-        puts !(sign_up_params[:password]).empty?
-
-        if (sign_up_params[:password] == sign_up_params[:password_confirmation])  #not working   
-            password_hash = BCrypt::Password.create(user_params[:password]) 
-            @user = User.new(email: user_params[:email], password: password_hash)
-            if @user.save
-                redirect_to categories_path
+        @user = User.new(email: sign_up_params[:email], password: sign_up_params[:password])
+        if @user.save
+            if sign_up_params[:password_confirmation].empty?
+                @user.errors.add(:password,"confirmation can't be blank")
             else
-                render :sign_up, status: :unprocessable_entity
+                user = User.sign_up(sign_up_params)
+                if user 
+                    user.save
+                    redirect_to categories_path
+                else
+                    @user.errors.add(:password,"not equal")  
+                end  
             end
-        else
-            render :sign_up, status: :unprocessable_entity
         end
+        render :sign_up, status: :unprocessable_entity if @user.errors.count > 0
     end
-
+    #delete /logout
     def logout
     end
 
@@ -66,6 +55,6 @@ class AuthController < ApplicationController
     end
 
     def sign_up_params
-        params.permit(:email, :password, :password_confirmation)
+        params.require(:user).permit(:email, :password, :password_confirmation) 
     end
 end
