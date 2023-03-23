@@ -1,25 +1,21 @@
 require 'bcrypt'
 class User < ApplicationRecord
-    validates :email, uniqueness: {case_sensitive: false}, presence: true
-    validates :password, presence: true
     has_many :categories
     has_many :tasks, through: :categories
 
     after_create :generate_token
+    validates :email, uniqueness: {case_sensitive: false}, presence: true
+    validates :password, presence: true
 
     def self.sign_up(user_params)
-        password_hash = BCrypt::Password.create(user_params[:password])
-
-        create(email: user_params[:email], password: password_hash)
+        
     end
 
-    def self.valid_sign_in?(user_params)
+    def self.sign_in(user_params)
         user = find_by(email: user_params[:email])
-        
+    
         if user.present?
-        valid_password = BCrypt::Password.new(user.password) == user_params[:password]            
-        else
-            false
+          return user if BCrypt::Password.new(user.password) == user_params[:password]
         end
     end
 
