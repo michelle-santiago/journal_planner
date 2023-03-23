@@ -6,10 +6,6 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     @category.save
     @task = Task.new(title: "Task 1", priority: "High", status: "Not Started", category_id: @category.id)
     @task.save
-    # @task2 = Task.new(title: "Task 2", priority: "High", status: "Not Started", category_id: @category.id)
-    # @task2.save
-    puts @task.inspect
-    # print @task2.inspect
 
   end
 
@@ -22,12 +18,10 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     get new_category_task_url(@category.id)
     assert_response :success
   end
-  #fail
+
   test "should create task" do
-    # @task2 = Task.new(title: "Task 2", priority: "High", status: "Not Started", category_id: @category.id)
-    # @task2.save
     assert_difference("Task.count") do
-      post category_tasks_url(@category.id), params: { task: { title: @task.title, priority: @task.priority, status: @task.status, category_id: @task.category_id } }
+      post category_tasks_url(@category.id), params: { task: {title: @task.title, priority: @task.priority, status: @task.status, category_id: @task.category_id } }
     end
     assert_redirected_to category_tasks_url(@category.id)
   end

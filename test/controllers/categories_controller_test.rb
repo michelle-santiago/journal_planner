@@ -5,6 +5,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   def setup
      @category = Category.new(name: "Category 1", user_id: "1")
      @category.save
+     @category2 = Category.new(name: "Category 2", user_id: "1")
      #categories(:one) => <Category id: 980190962, name: nil, user_id: nil, created_at: "2023-03-16 04:39:38.080706000 +0000", updated_at: "2023-03-16 04:39:38.080706000 +0000"
                           # does not work for (create,update )because of validation in model
   end
@@ -18,10 +19,10 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     get new_category_url
     assert_response :success
   end
-  #fail
+
   test "should create category" do
     assert_difference("Category.count") do
-      post categories_url, params: { category: { name: @category.name, user_id: @category.user_id  } }
+      post categories_url, params: { category: { name: @category2.name, user_id: @category2.user_id  } }
     end
 
     assert_redirected_to categories_url
