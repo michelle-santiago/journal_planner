@@ -1,6 +1,5 @@
-<p style="color: green"><%= notice %></p>
 <div class="px-20 py-20 flex flex-col justify-center items-center">
-    <%= form_with model: user, url: sign_in_path, local: true do |f| %>
+    <%= form_with model: user, url: path, local: true do |f| %>
     <p>
         <% if user.errors.any? %>
             <ul>
@@ -19,9 +18,19 @@
         <%= f.label :Password %><br/> 
         <%= f.password_field :password %>
     </p>
+    <%if type === "sign_up"%>
+        <p>
+            <%= f.label :'Confirm Password' %><br/> 
+            <%= f.password_field :password_confirmation%>
+        </p>
+    <%end%>
 
     <button class="bg-pink-200 rounded-md px-3 py-2 text-sm font-medium">
-        <%=f.submit 'Sign in'%>
+        <%if type === "sign_up"%>
+            <%=f.submit 'Sign up'%>
+        <%else%>
+            <%=f.submit 'Sign in'%>
+        <%end%>
     </button>
 
     <% end %>
