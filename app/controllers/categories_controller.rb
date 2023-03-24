@@ -1,14 +1,16 @@
 class CategoriesController < ApplicationController
+    before_action :get_user
+
     def index
-        @categories = Category.all 
+        @categories = @user.categories
     end
 
     def new
-        @category = Category.new
+        @category = @user.categories.build
     end
 
     def create
-        @category = Category.new(category_params)
+        @category = @user.categories.build(category_params)
 
         if @category.save
             redirect_to categories_path
@@ -19,11 +21,11 @@ class CategoriesController < ApplicationController
     end
 
     def edit
-        @category = Category.find(params["id"])
+        @category = @user.categories.find(params["id"])
     end
     
     def update
-        @category = Category.find(params["id"])
+        @category = @user.categories.find(params["id"])
         if @category.update(category_params)
             redirect_to categories_path
         else
@@ -32,16 +34,20 @@ class CategoriesController < ApplicationController
     end
 
     def destroy
-        @category = Category.find(params["id"])
+        @category = @user.categories.find(params["id"])
         @category.destroy
         redirect_to categories_path
     end
 
     def show
-        @category = Category.find(params["id"])
+        @category = @user.categories.find(params["id"])
     end
 
     private
+    def get_user
+        # @user = User.find(params["user_id"])
+        @user = User.find_by_email(session[:user_id])
+    end
 
     def category_params
         params.require(:category).permit(:name,:user_id)

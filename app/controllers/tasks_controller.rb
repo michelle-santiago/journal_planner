@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
     def index
         @tasks = @category.tasks
+        @category
     end
 
     def new
