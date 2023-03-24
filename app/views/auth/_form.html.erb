@@ -1,0 +1,37 @@
+<div class="px-20 py-20 flex flex-col justify-center items-center">
+    <%= form_with model: user, url: path, local: true do |f| %>
+    <p>
+        <% if user.errors.any? %>
+            <ul>
+                <% user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        <% end %>
+    </p>
+    <p>
+        <%= f.label :Email%><br/>
+        <%= f.text_field :email %>
+    </p>
+
+    <p>
+        <%= f.label :Password %><br/> 
+        <%= f.password_field :password %>
+    </p>
+    <%if type === "sign_up"%>
+        <p>
+            <%= f.label :'Confirm Password' %><br/> 
+            <%= f.password_field :password_confirmation%>
+        </p>
+    <%end%>
+
+    <button class="bg-pink-200 rounded-md px-3 py-2 text-sm font-medium">
+        <%if type === "sign_up"%>
+            <%=f.submit 'Sign up'%>
+        <%else%>
+            <%=f.submit 'Sign in'%>
+        <%end%>
+    </button>
+
+    <% end %>
+</div>
