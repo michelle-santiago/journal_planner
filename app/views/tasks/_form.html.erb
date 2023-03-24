@@ -18,11 +18,18 @@
         <%= f.label :Description %><br/> 
         <%= f.text_area :description %>
     </p>
-
+    
+    <p>
+        <%= f.label :Priority %><br/> 
+        <%= f.select :priority, ['High', 'Medium', 'Low', 'None']%>
+    </p>
+    
     <p>
         <%= f.label :Deadline%><br/> 
         <%= f.date_field :deadline %>
     </p>
+
+    <%= f.hidden_field :status, :value => 'Not Started' %>
 
     <button class="bg-pink-200 rounded-md px-3 py-2 text-sm font-medium">
         <%=f.submit%>

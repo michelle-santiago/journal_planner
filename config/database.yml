@@ -12,11 +12,15 @@ default: &default
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
     username: mishel
     password: <%= ENV['JOURNAL_PLANNER_DATABASE_PASSWORD'] %>
-
 development:
   <<: *default
   # database: db/development.sqlite3
-  database: journal_planner_development
+  database: journal_planner_development 
+  # username: journal_planner
+  # password: <%= ENV['JOURNAL_PLANNER_DATABASE_PASSWORD'] %>
+  # host: localhost
+  # port: 5432
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,4 +32,6 @@ test:
 production:
   <<: *default
   database: journal_planner_production
+  username: journal_planner
+  password: <%= ENV['JOURNAL_PLANNER_DATABASE_PASSWORD'] %>
   url: <%= ENV['DATABASE_URL'] %>

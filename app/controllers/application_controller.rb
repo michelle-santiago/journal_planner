@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
 
     before_action :authenticate_user
 
+    def root
+    end 
+
     def current_user
         token = session[:authorization]
 
@@ -18,3 +21,4 @@ class ApplicationController < ActionController::Base
         end
     end
 end
+
