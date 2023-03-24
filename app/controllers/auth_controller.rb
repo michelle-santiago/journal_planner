@@ -1,8 +1,14 @@
 require 'bcrypt'
 class AuthController < ApplicationController
+    skip_before_action :authenticate_user
+
     #get /sign_in
     def sign_in
-        @user = User.new
+        if !session[:authorization]
+            @user = User.new
+        else
+            redirect_to categories_path #change to home later
+        end
     end
     #get /sign_up
     def sign_up
@@ -18,10 +24,11 @@ class AuthController < ApplicationController
         else 
             user = User.sign_in(user_params)
             if user #email is present and have correct password
-                redirect_to categories_path
+                session[:authorization] = user.token
+                redirect_to categories_path #change to home path later
             else
-                @user.errors.add(:email,"or")
-                @user.errors.add(:password,"invalid")
+                @user.errors.add(:email,"/ Password is invalid")
+                # @user.errors.add(:password,"invalid")
             end                
         end
         render :sign_in, status: :unprocessable_entity if @user.errors.count > 0
@@ -46,6 +53,9 @@ class AuthController < ApplicationController
     end
     #delete /logout
     def logout
+        session.delete(:authorization)
+        session.delete(:user_id)
+        redirect_to sign_in_path
     end
 
     private

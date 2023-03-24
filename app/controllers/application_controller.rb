@@ -1,19 +1,20 @@
 class ApplicationController < ActionController::Base
-    # protect_from_forgery with: :null_session
+    protect_from_forgery with: :null_session
 
-    # before_action :authenticate_user
+    before_action :authenticate_user
 
-    # def current_user
-    #     token = request.headers['Authorization']
+    def current_user
+        token = session[:authorization]
 
-    #     if token.present?
-    #         user ||= User.find_by(token: token.gsub("Token", ""))
-    #     end
-    # end
+        if token.present?
+            user ||= User.find_by(token: token.gsub("Token", ""))
+            session[:user_id] = user.email
+        end
+    end
 
-    # def authenticate_user
-    #     if current_user.nil?
-    #         render json: {unauthenticated: true}, status: 403
-    #     end
-    # end
+    def authenticate_user
+        if current_user.nil?
+            redirect_to sign_in_path
+        end
+    end
 end

@@ -13,6 +13,10 @@
 
   <body>
     <main class="container mx-auto mt-10">
+      <% if controller_name !="auth" %>
+        <%= render "header"%>
+      <%end%>
+      
       <%= yield %>
     </main>
  
