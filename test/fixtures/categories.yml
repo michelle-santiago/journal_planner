@@ -10,3 +10,9 @@ one:
 two: 
  name: "test category 2"
 
+three: 
+  name: ""
+  user_id: ""
+
+four: {}
+

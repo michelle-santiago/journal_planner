@@ -12,3 +12,10 @@ two:
   title: "test task 2"
   priority: "high"
   status: "not started"
+three: 
+  title: ""
+  priority: ""
+  status: ""
+  category_id: ""
+four: {} 
+
