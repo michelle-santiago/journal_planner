@@ -46,7 +46,7 @@ class CategoriesController < ApplicationController
     private
     def get_user
         # @user = User.find(params["user_id"])
-        @user = User.find_by_email(session[:user_id])
+        @user = User.find_by_email(cookies.encrypted[:user_id])
     end
 
     def category_params

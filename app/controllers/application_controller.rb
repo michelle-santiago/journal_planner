@@ -7,11 +7,12 @@ class ApplicationController < ActionController::Base
     end 
 
     def current_user
-        token = session[:authorization]
+        
+        token = cookies.encrypted[:authorization]
 
         if token.present?
             user ||= User.find_by(token: token.gsub("Token", ""))
-            session[:user_id] = user.email
+            cookies.encrypted[:user_id] = user.email
         end
     end
 

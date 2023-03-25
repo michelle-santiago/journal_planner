@@ -4,7 +4,7 @@ class AuthController < ApplicationController
 
     #get /sign_in
     def sign_in
-        if !session[:authorization]
+        if !cookies.encrypted[:authorization]
             @user = User.new
         else
             redirect_to categories_path #change to home later
@@ -24,7 +24,7 @@ class AuthController < ApplicationController
         else 
             user = User.sign_in(user_params)
             if user #email is present and have correct password
-                session[:authorization] = user.token
+                cookies.encrypted[:authorization] = user.token
                 redirect_to categories_path #change to home path later
             else
                 @user.errors.add(:email,"/ Password is invalid")
@@ -53,8 +53,8 @@ class AuthController < ApplicationController
     end
     #delete /logout
     def logout
-        session.delete(:authorization)
-        session.delete(:user_id)
+        cookies.delete :authorization
+        cookies.delete :user_id
         redirect_to sign_in_path
     end
 
