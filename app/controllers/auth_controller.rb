@@ -42,8 +42,7 @@ class AuthController < ApplicationController
             else
                 user = User.sign_up(sign_up_params)
                 if user 
-                    user.save
-                    redirect_to categories_path
+                    redirect_to sign_in_path if user.save
                 else
                     @user.errors.add(:password,"not equal")  
                 end  
