@@ -9,3 +9,9 @@ two:
   email: "test_user1@email.com"
   password: "test_password"
 
+three:
+  email: ""
+  password: ""
+  token: ""
+
+four: {}
