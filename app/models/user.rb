@@ -4,8 +4,8 @@ class User < ApplicationRecord
     has_many :tasks, through: :categories
 
     after_create :generate_token
-    validates :email, uniqueness: {case_sensitive: false}, presence: true
-    validates :password, presence: true
+    validates :email, uniqueness: {case_sensitive: false}, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
+    validates :password, presence: true, length: { in: 6..20 }
 
     def self.sign_up(sign_up_params)
         if (sign_up_params[:password] == sign_up_params[:password_confirmation]) 
