@@ -39,3 +39,4 @@
 
 /node_modules
 
+app/views/home/index.html.erb
