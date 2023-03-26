@@ -12,13 +12,10 @@
   </head>
 
     <body class="bg-gradient-to-t from-emerald-300 via-transparent">
-    <main class="container mx-auto">
-      <% if controller_name !="auth" %>
-        <%= render "header"%>
-      <%end%>
-      
-      <%= yield %>
-    </main>
- 
+        <% if controller_name !="auth" %>
+          <%= render "header"%> 
+        <%end%>
+        
+        <%= yield %>
   </body>
 </html>

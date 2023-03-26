@@ -1,0 +1,27 @@
+<div class="w-full px-20 py-20 flex justify-center items-center">
+    <table class='table-auto w-[80%] border-collapse'>
+        <thead class="bg-pink-50 text-left">
+            <tr>
+                <th>Tasks for today</th>
+                <th>Category</th>
+                <th>Priority</th>
+                <th>Status</th>
+            </tr>
+        </thead>  
+        <% @categories.each do |category| %>
+            <%category.tasks.each do |task|%> 
+                
+                <tbody>
+                <%if task.deadline%>
+                    <%if task.deadline.strftime("%Y-%m-%d") === Date.today.strftime("%Y-%m-%d")%>
+                        <td><%= task.title %></td>
+                        <td><%= category.name %></td>
+                        <td><%= task.priority %></td>
+                        <td><%= task.status %></td>
+                    <%end%>
+                <%end%>
+                <tbody>
+            <%end%>
+        <% end %>
+    </table>
+</div>
