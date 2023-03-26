@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
-    before_action :get_category
+    before_action :get_category, :get_user
 
     def index
         @tasks = @category.tasks
-        @category
+        @categories = @user.categories
     end
 
     def new
@@ -46,5 +46,9 @@ class TasksController < ApplicationController
 
     def task_params
         params.require(:task).permit(:title,:description,:deadline,:category_id,:priority,:status)
+    end
+
+    def get_user
+        @user = User.find_by_email(cookies.encrypted[:user_id])
     end
 end
