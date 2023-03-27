@@ -1,11 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  email: MyString
-  password: MyString
-  token: MyString
+  email: "test_user1@email.com"
+  password: "test_password"
+  token: "test_token"
 
 two:
-  email: MyString
-  password: MyString
-  token: MyString
+  email: "test_user1@email.com"
+  password: "test_password"
+
+three:
+  email: ""
+  password: ""
+  token: ""
+
+four: {}

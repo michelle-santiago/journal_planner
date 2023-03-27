@@ -1,13 +1,17 @@
 require "test_helper"
-
+require 'bcrypt'
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
-  def setup
-     @category = Category.new(name: "Category 1", user_id: "1")
-     @category.save
-     @category2 = Category.new(name: "Category 2", user_id: "1")
-     #categories(:one) => <Category id: 980190962, name: nil, user_id: nil, created_at: "2023-03-16 04:39:38.080706000 +0000", updated_at: "2023-03-16 04:39:38.080706000 +0000"
-                          # does not work for (create,update )because of validation in model
+  setup do
+    @user = users(:one)
+    @category = categories(:one)
+    @category.user_id = @user.id
+    @category.save
+    @category2 = categories(:two)
+    @category2.user_id = @user.id
+    
+    # user token for authorization
+    cookies_helper(@user.token)
   end                            
 
   test "should get index" do
