@@ -1,0 +1,26 @@
+<table class="min-w-full bg-white  divide-y divide-gray-200 dark:divide-gray-600 border border-gray-200">
+    <thead class="bg-gray-50 dark:bg-gray-700">
+        <tr class="text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+            <th scope="col" class="p-4" >Title</th>
+            <th scope="col" class="p-4">Category</th>
+            <th scope="col" class="p-4">Priority</th>
+            <th scope="col" class="p-4">Status</th>
+        </tr>
+    </thead>  
+    <% @categories.each do |category| %>
+        <%category.tasks.each do |task|%>     
+            <tbody class="bg-white dark:bg-gray-800">
+            <%if task.deadline%>
+                <%if task.deadline.strftime("%Y-%m-%d") === Date.today.strftime("%Y-%m-%d")%>
+                    <tr class="text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                        <td class="p-4"><%= task.title %></td>
+                        <td class="p-4"><%= category.name %></td>
+                        <td class="p-4"><%= task.priority %></td>
+                        <td class="p-4"><%= task.status %></td>
+                    </tr>
+                <%end%>
+            <%end%>
+            <tbody>
+        <%end%>
+    <% end %>
+</table>

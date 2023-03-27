@@ -1,37 +1,24 @@
-<%= render "header", category_name: @tasks[0].category.name%>
-<%= render "nav"%>
-<div class="w-full px-20 py-20 flex justify-center items-center">
-    <table class='table-auto w-[80%] border-collapse'>
-        <thead class="bg-pink-50 text-left">
-            <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Deadline</th>
-                <th>Priority</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-
-        <tbody class="mx-2 my-2 ">
-            <% @tasks.each do |task| %>
-                <tr>
-                    <td><%= task.id %></td>
-                    <td><%= task.title %></td>
-                    <td><%= task.deadline.strftime('%B %d, %Y') if task.deadline%></td>
-                    <td><%= task.priority %></td>
-                    <td><%= task.status %></td>
-                    <td class="flex gap-5 mt-2">
-                        <p class="bg-blue-200 rounded-md px-3 py-2 text-sm font-medium">
-                            <%= link_to 'Edit', edit_category_task_path(task.category,task)%> 
-                        </p>
-                         <p class="bg-red-200 rounded-md px-3 py-2 text-sm font-medium">
-                            <%= link_to  'Delete',category_task_path(task.category,task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %> 
-                        </p>
-                    </td>
-                <tr>
-
-            <% end %>
-        </tbody>
-    </table>
+<div class="flex h-screen pt-16 overflow-hidden">
+    <%= render "home/sidebar"%>
+    <div id="main-content" class="bg-white relative w-full h-full overflow-y-auto lg:ml-64 dark:bg-gray-900">
+        <main>
+            <div class="px-4 pt-6">
+                <div class="p-4">
+                    <div class="mb-4 lg:mb-0 ">
+                        <%= render "sub_header", category: @category%>
+                        <%= render "nav"%>
+                    </div>
+                    <div class="flex flex-col mt-6">
+                        <div class="overflow-x-auto rounded-lg">
+                            <div class="inline-block min-w-full align-middle">
+                                <div class="overflow-hidden shadow sm:rounded-lg">
+                                    <%=render "table"%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>

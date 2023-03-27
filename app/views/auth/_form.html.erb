@@ -1,0 +1,67 @@
+<div class="flex flex-col h-screen overflow-hidden items-center justify-center px-6 pt-8 mx-auto md:h-screen pt:mt-0 dark:bg-gray-900">
+    <a href="" class="flex flex-row justify-center align-center">
+       
+        <h2 class="mb-4 text-xl leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">Memento</h2>  
+        <lord-icon
+        src="https://cdn.lordicon.com/rvrbsoyg.json"
+        trigger="loop"
+        delay="5000"
+        class="w-10 h-10 -ml-2"
+        >
+        </lord-icon>  
+    </a>
+    <!--Card-->
+    <div class="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow dark:bg-gray-800">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+            <%= type === "sign_up" ? 'Sign up' : 'Sign in'%>
+        </h2>
+        <!--Form-->
+        <div class="mt-8 space-y-6">
+            <%= form_with model: user, url: path, local: true do |f| %>
+                <!--Error Messages-->
+                <% if user.errors.any? %>
+                    <div class="flex p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300" role="alert">
+                        <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        <span class="sr-only">Info</span>
+                            <ul>
+                                <% user.errors.full_messages.each do |message| %>
+                                    <li class="font-medium"><%= message %></li>
+                                <% end %>
+                            </ul>
+                    </div>
+                <% end %>
+                <!--Email-->
+                <div>
+                    <%= f.label :Email, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                    <%= f.text_field :email, class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-300 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
+                </div>
+                <!--Password-->
+                <div>
+                    <%= f.label :Password, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+                    <%= f.password_field :password, class:"bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-300 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
+                <div>
+                <div>
+                    <%if type === "sign_up"%>
+                        <!--Confirm Password-->
+                        <div>
+                            <%= f.label 'Confirm Password',  class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                            <%= f.password_field :password_confirmation, class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-300 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
+                        </div>
+                        <!--Sign up-->
+                        <%=f.submit 'Create Account', class: "w-full mt-5 px-5 py-3 text-base font-medium text-center text-white bg-primary-300 rounded-lg hover:bg-primary-00 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"%>
+
+                        <div class="mt-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+                            Already have an account? <%= link_to 'Login here', sign_in_path, class:"text-primary-300 hover:underline dark:text-primary-500"%>
+                        </div>
+                    <%else%>
+                        <!--Sign in-->
+                        <%=f.submit 'Login to your account', class: "w-full mt-5 px-5 py-3 text-base font-medium text-center text-white bg-primary-300 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"%>
+                        <div class="mt-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+                            Not registered? <%= link_to 'Create Account', sign_up_path, class:"text-primary-300 hover:underline dark:text-primary-500"%>
+                        </div>
+                    <%end%>
+                <div>
+            <% end %>
+        </div>
+    </div>
+</div>

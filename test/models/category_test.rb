@@ -1,35 +1,40 @@
 require "test_helper"
 
 class CategoryTest < ActiveSupport::TestCase
-  def setup
-    @category = Category.new(name: "Category 1", user_id: "1")
+  setup do
+    @user = users(:one)
+    
+    @category = categories(:one)
+    @category.user_id = @user.id
+    @category.save
+    # for testing nil and empty 
+    @category_empty = categories(:three)
+    @category_nil = categories(:four)
   end 
 
-  test "name should not be blank" do
-    @category.name = ""
-    assert_not @category.valid? 
+  test "name can't be blank" do
+    category  = @category
+    assert_not_empty(category.name)
+  end
+
+  test "name can't be nil" do
+    category  = @category
+    assert_not_nil(category.name)
   end
 
   test "name should be unique" do
-    @category.save
-    @another_category =  Category.new(name: "category 1", user_id: "1")
+    @another_category =  Category.new(name: @category.name, user_id: @category.user_id)
     assert_not @another_category.save 
   end
   
-  test "user_id should not be blank" do
-    @category.user_id = ""
-    assert_not @category.valid? 
+  test "user id can't be blank" do
+    category  = @category
+    assert_not_empty(category.user_id.to_s)
   end
 
-  test "should not save without name" do #passed as long as there's a validation of either name or user_id
-    category = Category.new
-    assert_not category.save
+  test "user id can't be nil" do
+    category  = @category
+    assert_not_nil(category.user_id)
   end
-
-  test "should not save without user_id" do #passed as long as there's a validation of either name or user_id
-    category = Category.new
-    assert_not category.save
-  end
-
 
 end

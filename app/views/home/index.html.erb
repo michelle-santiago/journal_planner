@@ -1,28 +1,29 @@
-<div>Home</div>
-<div class="w-full px-20 py-20 flex justify-center items-center">
-    <table class='table-auto w-[80%] border-collapse'>
-        <thead class="bg-pink-50 text-left">
-            <tr>
-                <th>Tasks for today</th>
-                <th>Category</th>
-                <th>Priority</th>
-                <th>Status</th>
-            </tr>
-        </thead>  
-        <% @categories.each do |category| %>
-            <%category.tasks.each do |task|%> 
-                
-                <tbody>
-                <%if task.deadline%>
-                    <%if task.deadline.strftime("%Y-%m-%d") === Date.today.strftime("%Y-%m-%d")%>
-                        <td><%= task.title %></td>
-                        <td><%= category.name %></td>
-                        <td><%= task.priority %></td>
-                        <td><%= task.status %></td>
-                    <%end%>
-                <%end%>
-                <tbody>
-            <%end%>
-        <% end %>
-    </table>
+<div class="flex h-screen pt-16 overflow-hidden ">
+    <%= render "sidebar"%>
+    <div id="main-content" class="bg-white relative w-full h-full overflow-y-auto lg:ml-64 dark:bg-gray-900">
+        <main>
+            <div class="px-4 pt-6">
+                <div class="p-4">
+                    <div>
+                    <div class="mb-4 lg:mb-0 flex">
+                            <%= render "greeting"%>
+                            </div>
+                        <div class="mb-4 lg:mb-0">
+                            <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Today's tasks</h3>
+                            <span class="text-base font-normal text-gray-500 dark:text-gray-400">This is a list of tasks due today</span>
+                        </div>
+                        <div class="flex flex-col mt-6">
+                            <div class="overflow-x-auto rounded-lg">
+                                <div class="inline-block min-w-full align-middle">
+                                    <div class="overflow-hidden shadow sm:rounded-lg border border-gray-200">
+                                        <%= render "tasks_today"%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>

@@ -1,12 +1,16 @@
 require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
-  def setup
-    @category = Category.new(name: "Category 1", user_id: "1")
+  setup do
+    @user = users(:one)
+    @category = categories(:one)
+    @category.user_id = @user.id
     @category.save
-    @task = Task.new(title: "Task 1", priority: "High", status: "Not Started", category_id: @category.id)
+    @task = tasks(:one)
+    @task.category_id = @category.id
     @task.save
-
+   # user token for authorization
+   cookies_helper(@user.token)
   end
 
   test "should get index" do
