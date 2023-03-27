@@ -22,8 +22,9 @@ class AuthController < ApplicationController
         elsif @user.password.empty?
             @user.errors.add(:password,"can't be blank")
         else 
-            user = User.sign_in(user_params)
-            if user #email is present and have correct password
+            @user = User.find_by(email: user_params[:email])
+            if @user && @user.authenticate(user_params[:password])
+            # if user #email is present and have correct password
                 cookies.encrypted[:authorization] = user.token
                 redirect_to categories_path #change to home path later
             else
@@ -40,9 +41,10 @@ class AuthController < ApplicationController
             if sign_up_params[:password_confirmation].empty?
                 @user.errors.add(:password,"confirmation can't be blank")
             else
-                user = User.sign_up(sign_up_params)
-                if user 
-                    redirect_to sign_in_path if user.save
+                if @user.valid?
+                    @user.save
+                    redirect_to categories_path
+
                 else
                     @user.errors.add(:password,"not equal")  
                 end  
