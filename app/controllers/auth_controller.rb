@@ -7,7 +7,7 @@ class AuthController < ApplicationController
         if !cookies.encrypted[:authorization]
             @user = User.new
         else
-            redirect_to categories_path #change to home later
+            redirect_to root_path
         end
     end
     #get /sign_up
@@ -26,7 +26,7 @@ class AuthController < ApplicationController
             if @user && @user.authenticate(user_params[:password])
             # if user #email is present and have correct password
                 cookies.encrypted[:authorization] = @user.token
-                redirect_to categories_path #change to home path later
+                redirect_to root_path
             else
                 @user.errors.add(:email,"/ Password is invalid")
                 # @user.errors.add(:password,"invalid")

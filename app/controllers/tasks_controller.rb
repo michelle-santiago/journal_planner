@@ -6,6 +6,10 @@ class TasksController < ApplicationController
         @categories = @user.categories
     end
 
+    def show
+        @task = @category.tasks.find(params["id"])
+    end
+    
     def new
         @task = @category.tasks.build
     end

@@ -1,6 +1,6 @@
 <div class="flex h-screen pt-16 overflow-hidden ">
     <%= render "sidebar"%>
-    <div id="main-content" class="relative w-full h-full overflow-y-auto lg:ml-64 dark:bg-gray-900">
+    <div id="main-content" class="bg-white relative w-full h-full overflow-y-auto lg:ml-64 dark:bg-gray-900">
         <main>
             <div class="px-4 pt-6">
                 <div class="p-4">
@@ -15,7 +15,7 @@
                         <div class="flex flex-col mt-6">
                             <div class="overflow-x-auto rounded-lg">
                                 <div class="inline-block min-w-full align-middle">
-                                    <div class="overflow-hidden shadow sm:rounded-lg">
+                                    <div class="overflow-hidden shadow sm:rounded-lg border border-gray-200">
                                         <%= render "tasks_today"%>
                                     </div>
                                 </div>
