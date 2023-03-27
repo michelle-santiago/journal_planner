@@ -22,7 +22,6 @@ class AuthController < ApplicationController
         elsif @user.password.empty?
             @user.errors.add(:password,"can't be blank")
         else 
-            # user = User.sign_in(user_params)
             @user = User.find_by(email: user_params[:email])
             if @user && @user.authenticate(user_params[:password])
             # if user #email is present and have correct password
@@ -45,10 +44,6 @@ class AuthController < ApplicationController
                 if @user.valid?
                     @user.save
                     redirect_to categories_path
-                # user = User.sign_up(sign_up_params)
-                # if user 
-                #     user.save
-                #     redirect_to categories_path
                 else
                     @user.errors.add(:password,"not equal")  
                 end  
