@@ -25,7 +25,7 @@ class AuthController < ApplicationController
             @user = User.find_by(email: user_params[:email])
             if @user && @user.authenticate(user_params[:password])
             # if user #email is present and have correct password
-                cookies.encrypted[:authorization] = user.token
+                cookies.encrypted[:authorization] = @user.token
                 redirect_to categories_path #change to home path later
             else
                 @user.errors.add(:email,"/ Password is invalid")
