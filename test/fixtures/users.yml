@@ -2,16 +2,16 @@
 
 one:
   email: "test_user1@email.com"
-  password: "test_password"
+  password_digest: "test_password"
   token: "test_token"
 
 two:
   email: "test_user1@email.com"
-  password: "test_password"
+  password_digest: "test_password"
 
 three:
   email: ""
-  password: ""
+  password_digest: ""
   token: ""
 
 four: {}
