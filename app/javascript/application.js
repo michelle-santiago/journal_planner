@@ -4,3 +4,6 @@ import "controllers"
 import "flowbite"
 import "flowbite-datepicker"
 import "lord-icon"
+//additional js
+// import "dark-mode"
+// import "sidebar"

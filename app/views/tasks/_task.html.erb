@@ -1,11 +1,14 @@
-<div class="px-20 py-20 h-screen bg-white flex flex-col text-gray-900">
-    <%= link_to 'Back',category_tasks_path(task.category_id), class: "w-20 border border-primary-200 bg-primary-200 text-white rounded-md px-3 py-2 text-gray-900 text-sm font-medium"%> 
-    <div class="mt-5 mb-5">
-        <p class="pb-5 text-xl font-bold"><%= task.title.upcase %></p>
-        <p class="pb-5 text-sm"><span>Due on: </span> <%= task.deadline.strftime('%B %d, %Y') if task.deadline %></p>
-        <p class="pb-5 text-sm"><span>Status: </span> <%= task.status%></p>
-        <p class="pb-5 text-sm"><span>Priority: </span> <%=task.priority %></p>
-        <p class="pb-5 text-sm font-bold">Details</p>
-        <p class= "indent-8 text-justify"><%= task.description %></p>
-    <div>
+<div class="px-5 py-5 flex flex-col text-gray-900 dark:bg-gray-900 dark:text-white ">
+    <%= link_to 'Back',category_tasks_path(task.category_id), class: "w-20 mb-4 border border-primary-200 bg-primary-200 text-white rounded-md px-3 py-2 text-gray-900 text-sm font-medium"%> 
+    <div class="w-full max-w-xl p-6 bg-white space-y-8 sm:p-8 bg-white rounded-lg shadow dark:bg-gray-800">
+        <div class="mt-5 mb-5">
+            <p class="pb-5 text-xl font-bold"><%= task.title.upcase %></p>
+            <p class="pb-5 text-sm"><span>Due on: </span> <%= task.deadline.strftime('%B %d, %Y') if task.deadline %></p>
+            <p class="pb-5 text-sm"><span>Status: </span> <%= task.status%></p>
+            <p class="pb-5 text-sm"><span>Category: </span> <%=@category.name %></p>
+            <p class="pb-5 text-sm"><span>Priority: </span> <%=task.priority %></p>
+            <p class="pb-5 text-sm font-bold">Details</p>
+            <p class= "indent-8 text-justify"><%= task.description %></p>
+        <div>
+    </div>
 </div>

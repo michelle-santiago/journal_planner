@@ -9,13 +9,16 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_import_module_tag "dark-mode", "sidebar" %>
+
   </head>
 
     <body class="bg-gradient-to-t from-emerald-300 via-transparent">
-        <% if controller_name !="auth" %>
-          <%= render "header"%> 
-        <%end%>
-        
-        <%= yield %>
+    <% if controller_name !="auth" %>
+      <%= render "header"%> 
+    <%end%>
+    
+    <%= yield %>
   </body>
+
 </html>

@@ -1,4 +1,4 @@
-<table class="min-w-full bg-white divide-y divide-gray-200 dark:divide-gray-600 border border-gray-200">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
     <thead class="bg-gray-50 dark:bg-gray-700">
         <tr class="text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
             <th scope="col" class="p-4">#</th>
@@ -20,7 +20,7 @@
                     <%= link_to 'Edit', edit_category_path(category), class: "bg-gray-400 rounded-md px-3 py-2 text-sm text-white font-medium"%> 
 
                     <%= link_to  'Add Task', new_category_task_path(category), class: "border border-primary-200 bg-primary-200 text-white rounded-md px-3 py-2 text-gray-900 text-sm font-medium"%> 
-                    <%= link_to 'View Tasks', category_tasks_path(category),  class: "border border-gray-500 rounded-md px-3 py-2 text-gray-900 text-sm font-medium"%>
+                    <%= link_to 'View Tasks', category_tasks_path(category),  class: "border border-gray-500 rounded-md px-3 py-2 text-gray-900 text-sm font-medium dark:bg-white"%>
                 </td>
             <tr>
 

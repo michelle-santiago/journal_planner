@@ -20,17 +20,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email should be unique" do
-    @another_user = User.new(email: @user.email, password: @user.password, token: @user.token)
+    @another_user = User.new(email: @user.email, password_digest: @user.password_digest, token: @user.token)
     assert_not @another_user.save 
   end
  
   test "password can't be blank" do
     user  = @user
-    assert_not_empty(user.password)
+    assert_not_empty(user.password_digest)
   end
 
   test "password can't be nil" do
     user  = @user
-    assert_not_nil(user.password)
+    assert_not_nil(user.password_digest)
   end
 end
