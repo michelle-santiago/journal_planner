@@ -1,13 +1,13 @@
 <div class="flex h-screen pt-16 overflow-hidden ">
     <%= render "sidebar"%>
-    <div id="main-content" class="bg-white relative w-full h-full overflow-y-auto lg:ml-64 dark:bg-gray-900">
+    <div id="main-content" class="bg-gray-100 relative w-full h-full overflow-y-auto lg:ml-64 bg-gray-100 dark:bg-gray-900">
         <main>
             <div class="px-4 pt-6">
                 <div class="p-4">
                     <div>
-                    <div class="mb-4 lg:mb-0 flex">
+                        <div class="mb-4 lg:mb-0 flex">
                             <%= render "greeting"%>
-                            </div>
+                        </div>
                         <div class="mb-4 lg:mb-0">
                             <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Today's tasks</h3>
                             <span class="text-base font-normal text-gray-500 dark:text-gray-400">This is a list of tasks due today</span>
@@ -15,7 +15,7 @@
                         <div class="flex flex-col mt-6">
                             <div class="overflow-x-auto rounded-lg">
                                 <div class="inline-block min-w-full align-middle">
-                                    <div class="overflow-hidden shadow sm:rounded-lg border border-gray-200">
+                                    <div class="overflow-hidden shadow sm:rounded-lg">
                                         <%= render "tasks_today"%>
                                     </div>
                                 </div>

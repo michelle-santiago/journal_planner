@@ -1,4 +1,4 @@
-<table class="min-w-full bg-white divide-y divide-gray-200 dark:divide-gray-600 border border-gray-200">
+<table class="min-w-full bg-white divide-y divide-gray-200 dark:divide-gray-600">
     <thead class="bg-gray-50 dark:bg-gray-700">
         <tr class="text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
             <th scope="col" class="p-4">#</th>
@@ -10,7 +10,7 @@
         </tr>
     </thead>
 
-    <tbody class="mx-2 my-2 ">
+    <tbody class="mx-2 my-2 dark:bg-gray-800">
         <% @tasks.each do |task| %>
             <tr class="text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
                 <td class="p-4"><%= task.id %></td>
@@ -22,7 +22,7 @@
                     <%= link_to  'Edit', edit_category_task_path(task.category,task), class: "bg-gray-400 rounded-md px-3 py-2 text-sm text-white font-medium"%> 
 
                     <%= link_to 'Delete',category_task_path(task.category,task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "border border-primary-200 bg-primary-200 text-white rounded-md px-3 py-2 text-gray-900 text-sm font-medium"%> 
-                    <%= link_to "View", category_task_path(task.category,task),  class: "border border-gray-500 rounded-md px-3 py-2 text-gray-900 text-sm font-medium"%>
+                    <%= link_to "View", category_task_path(task.category,task),  class: "border border-gray-500 rounded-md px-3 py-2 text-gray-900 text-sm font-medium bg-white"%>
                 </td>
             <tr>
         <% end %>

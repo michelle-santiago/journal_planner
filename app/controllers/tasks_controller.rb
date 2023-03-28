@@ -8,6 +8,7 @@ class TasksController < ApplicationController
 
     def show
         @task = @category.tasks.find(params["id"])
+        @categories = @user.categories
     end
     
     def new

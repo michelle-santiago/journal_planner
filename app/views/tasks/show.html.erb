@@ -1,1 +1,16 @@
-<%= render @task%>
+<div class="flex h-screen pt-16 overflow-hidden ">
+    <%= render "home/sidebar"%> 
+<div id="main-content" class="bg-gray-100 relative w-full h-full overflow-y-auto lg:ml-64 dark:bg-gray-900">
+    <main>
+        <div class="flex flex-col mt-6">
+            <div class="overflow-x-auto rounded-lg">
+                <div class="inline-block min-w-full align-middle">
+                    <div class="overflow-hidden shadow sm:rounded-lg">
+                        <%= render @task%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+</div>

@@ -1,5 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-
+const colors = require('tailwindcss/colors') //for themes
 module.exports = {
   content: [
     './public/*.html',
@@ -9,6 +9,7 @@ module.exports = {
     './node_modules/flowbite/**/*.js' //for flowbite
   ],
   darkMode: "class",
+  darkMode: 'media',
   theme: {
     extend: {
       colors: {
