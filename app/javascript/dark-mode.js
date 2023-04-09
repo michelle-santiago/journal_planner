@@ -1,26 +1,19 @@
-// for learning dark theme using flowbite/tailwindcss
-document.addEventListener('DOMContentLoaded',  function(){
-    console.log("dom loaded")
-})
 window.addEventListener("load", function(){
-    console.log("window loaded")
     dark_mode() 
 });
 document.addEventListener('turbo:render', function(){
-    console.log("turbo render")
     dark_mode()
 })
 
 function dark_mode(){
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
     //check if the theme color preference is set manually using the local storage. If not, it will either set the dark or light mode based on your browser color scheme preference.
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
     } else {
         document.documentElement.classList.remove('dark')
     }
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
     // Change the icons inside the button based on previous settings
     //for dark theme setting
@@ -62,6 +55,6 @@ function dark_mode(){
         }
 
         document.dispatchEvent(event);
-        
+
     });
-}
+} 
